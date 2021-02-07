@@ -5,24 +5,38 @@
     <!-- <meta charset="utf-8" /> {% load staticfiles %} -->
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     <link rel="stylesheet" href="/static/css/style.css" />
-    <style type="text/css">
-        td {
-            padding-left: 2px;
-            background-color: aqua;
-        }
-    </style>
+    <script type="text/javascript" src="/static/js/toolbox.js"></script>
 </head>
 
 <body>
+    <!-- Div of welcome slogan -->
     <div>
         <h1>Welcome to my workshop</h1>
         <p>You are visiting at: {{currentTime}}</p>
     </div>
+
+    <!-- Div of Route table -->
     <div>
-        <h2>Route table:</h2>
-        <p>It refers the following routes are supported</p>
+        <h2 onclick="toggleVisibilityNext(this)">[-] Route table</h2>
         <div>
-            <iframe class="one-column" src="route"></iframe>
+            <p>It refers the following routes are supported</p>
+            <iframe class="fullWidth-column" src="route"></iframe>
+        </div>
+    </div>
+
+    <!-- Div of Gallery -->
+    <div>
+        <h2>Gallery</h2>
+        <div class="flex-display">
+            <!-- 1 -->
+            <div class="narrow-column">
+                <h3>Flower Plot</h3>
+            </div>
+
+            <!-- 2 -->
+            <div class="narrow-column">
+                <h3>Choropleth Maps</h3>
+            </div>
         </div>
     </div>
 </body>

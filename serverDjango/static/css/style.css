@@ -1,3 +1,7 @@
+* {
+    font-family: monospace, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
 div {
     margin: 3px;
     padding: 2px;
@@ -13,6 +17,11 @@ div.flex-display {
     flex-wrap: wrap;
 }
 
-.one-column {
+.fullWidth-column {
     width: 12in;
+}
+
+.narrow-column {
+    width: 4in;
+    overflow-x: scroll;
 }
