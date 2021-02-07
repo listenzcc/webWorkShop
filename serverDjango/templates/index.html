@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="utf-8" /> {% load staticfiles %} -->
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <style type="text/css">
+        td {
+            padding-left: 2px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome to my workshop</h1>
+        <p>You are visiting at: {{currentTime}}</p>
+    </div>
+    <div>
+        <h2>Route table:</h2>
+        <p>It refers the following routes are supported</p>
+        <div>
+            <iframe class="one-column" src="route"></iframe>
+        </div>
+    </div>
+</body>
+
+</html>
