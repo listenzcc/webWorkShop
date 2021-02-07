@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <!-- <meta charset="utf-8" /> {% load staticfiles %} -->
+    <meta charset="utf-8" />
+    {% load static %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     <link rel="stylesheet" href="/static/css/style.css" />
     <script type="text/javascript" src="/static/js/toolbox.js"></script>
@@ -30,7 +31,7 @@
         <div class="flex-display">
             <!-- 1 -->
             <div class="narrow-column">
-                <h3>Flower Plot</h3>
+                <h3 onclick="refreshFlowsPlot()">Flowers Plot</h3>
             </div>
 
             <!-- 2 -->
@@ -39,6 +40,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Div of window -->
+    <div>
+        <h2>Window</h2>
+        <div>
+            <iframe id='window1' class="fullWidth-column large-height" src="flowersPlot"></iframe>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function refreshFlowsPlot() {
+            document.getElementById('window1').src = 'flowersPlot'
+        }
+    </script>
+
 </body>
 
 </html>

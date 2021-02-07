@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from .views_collection import DefaultView
+from .views_collection import FlowersPlotView
 from . import url_patterns
 
 
@@ -33,6 +34,10 @@ url_patterns.append(
 default_view = DefaultView()
 default_view.home_page()
 default_view.route_page()
+
+flowers_plot_view = FlowersPlotView()
+flowers_plot_view.home_page()
+flowers_plot_view.js_file()
 
 
 # ----------------------------------------
