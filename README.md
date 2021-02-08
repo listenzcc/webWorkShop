@@ -6,6 +6,27 @@ A web server of [django](https://www.djangoproject.com/) is established to ship 
 
 Wish me a good luck.
 
+## Choropleth Maps
+
+Draw interactive maps using geoData of choropleth map.
+
+The geoData of choropleth map is stored in the **sync** folder.
+
+### Sync Folder
+
+The sync folder setting is an experimental method.
+It allows programmers accessing to their **large-in-size** files easily across different machines or even platforms.
+The aim of the setting is to keep the files in the same structure and being easily transformed and synchronized.
+
+The current state is crude,
+
+- The folder is some folder in the disk, whose full path is saved in environ variable of **sync**.
+- The transform is performed by archiving and saving in cloud space of QQ **manually**.
+
+### Mapping
+
+The choropleth maps part is not done yet.
+
 ## Flowers Plot
 
 Plot simulation flowers using closed curves in [D3.js](https://d3js.org/d3.v6.min.js).
