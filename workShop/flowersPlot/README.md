@@ -1,11 +1,3 @@
-# WebWorkShop
-
-Workshop of self-entertainment web-support projects
-
-A web server of [django](https://www.djangoproject.com/) is established to ship the works.
-
-Wish me a good luck.
-
 ## Flowers Plot
 
 Plot simulation flowers using closed curves in [D3.js](https://d3js.org/d3.v6.min.js).

@@ -35,6 +35,9 @@ default_view = DefaultView()
 default_view.home_page()
 default_view.route_page()
 
+
+# ----------------------------------------
+# View of flowers plot
 flowers_plot_view = FlowersPlotView()
 flowers_plot_view.home_page()
 flowers_plot_view.js_file()
