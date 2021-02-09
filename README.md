@@ -20,12 +20,23 @@ The aim of the setting is to keep the files in the same structure and being easi
 
 The current state is crude,
 
-- The folder is some folder in the disk, whose full path is saved in environ variable of **sync**.
+- The folder is some folder on the disk, whose full path is saved in environ variable named as **sync**.
 - The transform is performed by archiving and saving in cloud space of QQ **manually**.
 
 ### Mapping
 
 The choropleth maps part is not done yet.
+
+## Draft Space
+
+The projects in the work shop need some coding draft to test something.
+And I would like to track them down.
+As a result, the space is to practice the notebook work,
+accordingly, the jupyter notebook will be used.
+
+To avoid the notebook files overflow the language statistics in github,
+since the files are always of too-large size.
+I have marked the folder as **linguist-vendored** in the **.gitattributes** file.
 
 ## Flowers Plot
 
