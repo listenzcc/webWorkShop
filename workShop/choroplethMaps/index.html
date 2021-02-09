@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Choropleth Mapping</title>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="./data.js"></script>
+</head>
+
+<body>
+    <!-- Slogan -->
+    <div class="fullwidth-column">
+        <h1>Choropleth Mapping</h1>
+    </div>
+
+    <!-- Whole View -->
+    <div class="fullwidth-column">
+        <h2>Whole View</h2>
+        <p>The whole map plotting</p>
+        <div id="Div-1"></div>
+    </div>
+
+    <!-- Split View -->
+    <div class="fullwidth-column">
+        <h2>Split View</h2>
+        <p>The splits of the maps</p>
+        <div id="Div-2"></div>
+    </div>
+
+    <script type="text/javascript">
+        let width = 500;
+        let height = 500;
+        let svg = d3
+            .select("#Div-1")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        let features = geoJson.features;
+        // let projection = d3.geoEqualEarth();
+        // let projection = d3.geoAzimuthalEqualArea();
+
+        var projection = d3
+            .geoNaturalEarth1()
+            .fitSize([width, height], geoJson)
+            .rotate([0, 0, 0])
+            .precision(20);
+
+        let path = d3.geoPath(projection);
+
+        svg
+            .selectAll("path")
+            .data(features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .style("fill", function(d) {
+                console.log(d);
+                let h = parseInt(Math.random() * 360),
+                    s = 0.5,
+                    l = 0.5;
+                return d3.hsl(h, s, l).toString();
+            })
+            .style("stroke", "#FFFFFF")
+            .attr("class", "Province")
+            .attr("id", (d) => d.properties.adcode);
+
+        console.log(document.getElementsByClassName("Province"));
+    </script>
+</body>
+
+</html>

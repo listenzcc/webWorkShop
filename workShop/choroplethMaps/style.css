@@ -1,0 +1,33 @@
+/* The css file is copied from the static folder of Django server */
+
+* {
+    font-family: monospace, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+div {
+    margin: 3px;
+    padding: 2px;
+    border: 1px solid forestgreen;
+}
+
+div:hover {
+    border-color: goldenrod;
+}
+
+div.flex-display {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fullWidth-column {
+    width: 12in;
+}
+
+.narrow-column {
+    width: 4in;
+    overflow-x: scroll;
+}
+
+.large-height {
+    height: 12in;
+}

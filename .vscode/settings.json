@@ -4,5 +4,8 @@
         "favicon",
         "gitattributes",
         "vendored"
-    ]
+    ],
+    "files.associations": {
+        "workShop/choroplethMaps/data.js": "plaintext"
+    }
 }
