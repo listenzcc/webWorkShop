@@ -44,9 +44,11 @@
         // let projection = d3.geoAzimuthalEqualArea();
 
         var projection = d3
-            .geoNaturalEarth1()
+            // .geoEqualEarth()
+            .geoAzimuthalEqualArea()
+            // .geoNaturalEarth1()
+            .rotate([-116, -40, 0])
             .fitSize([width, height], geoJson)
-            .rotate([0, 0, 0])
             .precision(20);
 
         let path = d3.geoPath(projection);
@@ -57,7 +59,7 @@
             .enter()
             .append("path")
             .attr("d", path)
-            .style("fill", function(d) {
+            .style("fill", function (d) {
                 console.log(d);
                 let h = parseInt(Math.random() * 360),
                     s = 0.5,
