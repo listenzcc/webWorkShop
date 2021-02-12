@@ -15,6 +15,8 @@ from django.views.generic.base import RedirectView
 
 from . import url_patterns
 
+SYNC_FOLDER = os.environ.get('SYNC', None)
+
 
 class DefaultView(object):
     '''

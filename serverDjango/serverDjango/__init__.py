@@ -12,6 +12,7 @@ import pandas as pd
 class UrlPatterns(object):
     '''
     An easy-to-use manager of url patterns,
+    Todo: The class should be of single-instance mode.
     '''
 
     def __init__(self):
