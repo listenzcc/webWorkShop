@@ -100,3 +100,18 @@ class FlowersPlotView(object):
 
         p = url(route, view)
         return url_patterns.append(p, 'JS File', 'json')
+
+
+class ChoroplethMapsView(object):
+    '''
+    Response using geojson of choropleth maps
+    '''
+
+    def __init__(self, dir=None):
+        '''
+        Init the View
+
+        Args:
+        - @dir: Full path of the directory containing the required files.
+        '''
+        self.dir = dir
