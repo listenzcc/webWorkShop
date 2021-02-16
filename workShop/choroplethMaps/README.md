@@ -17,4 +17,4 @@ The current state is crude,
 
 ### Mapping
 
-The choropleth maps part is not done yet.
+Implementing choropleth maps view in the django server.
