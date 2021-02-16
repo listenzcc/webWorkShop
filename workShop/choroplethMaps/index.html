@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="./data.js"></script>
+    <script type="text/javascript" src="./rewind.js"></script>
 </head>
 
 <body>
@@ -38,6 +39,8 @@
             .append("svg")
             .attr("width", width)
             .attr("height", height);
+
+        geojsonRewind(geoJson, true)
 
         let features = geoJson.features;
         // let projection = d3.geoEqualEarth();

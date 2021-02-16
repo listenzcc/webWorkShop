@@ -18,6 +18,7 @@ from django.urls import path
 
 from .views_collection import DefaultView
 from .views_collection import FlowersPlotView
+from .views_collection import ChoroplethMapsView
 from . import url_patterns
 
 
@@ -41,6 +42,14 @@ default_view.route_page()
 flowers_plot_view = FlowersPlotView()
 flowers_plot_view.home_page()
 flowers_plot_view.js_file()
+
+
+# ----------------------------------------
+# View of choropleth maps
+choropleth_maps_view = ChoroplethMapsView()
+choropleth_maps_view.home_page()
+choropleth_maps_view.js_file()
+choropleth_maps_view.json_file()
 
 
 # ----------------------------------------
