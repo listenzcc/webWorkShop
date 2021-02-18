@@ -118,7 +118,8 @@ class ChoroplethMapsView(object):
         if dir is not None:
             self.dir = dir
         else:
-            self.dir = os.path.join(os.environ.get('SYNC', None), 'GeoData')
+            self.dir = os.path.join(os.environ.get(
+                'SYNC', None), 'GeoData', 'json-files')
 
         self.prefix = os.path.join(
             'choroplethMaps')
