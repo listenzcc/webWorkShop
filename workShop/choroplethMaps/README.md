@@ -31,7 +31,7 @@ The project is to draw choropleth maps using d3-geo library.
 ### Implement in Django
 
 The [choroplethMaps.html](./serverDjango/templates/choroplethMaps.html) is generated to show the project.
-The '{{workingDir}}' placeholder is added to locate the .js files in the workShop folder.
+The '{{prefix}}' placeholder is added to locate the .js files in the workShop folder.
 
 In the Django view,
 the class of **ChoroplethMapsView** is used to maintain the service.
@@ -52,8 +52,7 @@ The view file is [view_collection.py](./serverDjango/serverDjango/views_collecti
             self.dir = os.path.join(os.environ.get(
                 'SYNC', None), 'GeoData', 'json-files')
 
-        self.prefix = os.path.join(
-            'choroplethMaps')
+        self.prefix = 'choroplethMaps'
 
         self.working_dir = os.path.join(
             os.path.dirname(__file__),

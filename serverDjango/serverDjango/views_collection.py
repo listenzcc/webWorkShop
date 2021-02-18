@@ -62,8 +62,7 @@ class FlowersPlotView(object):
     '''
 
     def __init__(self):
-        self.prefix = os.path.join(
-            'flowersPlot')
+        self.prefix = 'flowersPlot'
 
         self.working_dir = os.path.join(
             os.path.dirname(__file__),
@@ -81,7 +80,7 @@ class FlowersPlotView(object):
 
         def view(request):
             contents = dict(
-                workingDir=self.prefix
+                prefix=self.prefix
             )
             return render(request, 'flowersPlot.html', contents)
 
@@ -121,8 +120,7 @@ class ChoroplethMapsView(object):
             self.dir = os.path.join(os.environ.get(
                 'SYNC', None), 'GeoData', 'json-files')
 
-        self.prefix = os.path.join(
-            'choroplethMaps')
+        self.prefix = 'choroplethMaps'
 
         self.working_dir = os.path.join(
             os.path.dirname(__file__),
@@ -142,7 +140,7 @@ class ChoroplethMapsView(object):
 
         def view(request):
             contents = dict(
-                workingDir=self.prefix
+                prefix=self.prefix
             )
             return render(request, 'choroplethmaps.html', contents)
 

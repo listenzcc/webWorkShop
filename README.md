@@ -1,3 +1,13 @@
+- [WebWorkShop](#webworkshop)
+  - [Choropleth Maps](#choropleth-maps)
+    - [Sync Folder](#sync-folder)
+    - [Stand Alone Development](#stand-alone-development)
+    - [Implement in Django](#implement-in-django)
+  - [Draft Space](#draft-space)
+  - [Flowers Plot](#flowers-plot)
+    - [Stand Alone Development](#stand-alone-development-1)
+    - [Implement in Django](#implement-in-django-1)
+
 # WebWorkShop
 
 Workshop of self-entertainment web-support projects
@@ -39,7 +49,7 @@ The project is to draw choropleth maps using d3-geo library.
 ### Implement in Django
 
 The [choroplethMaps.html](./serverDjango/templates/choroplethMaps.html) is generated to show the project.
-The '{{workingDir}}' placeholder is added to locate the .js files in the workShop folder.
+The '{{prefix}}' placeholder is added to locate the .js files in the workShop folder.
 
 In the Django view,
 the class of **ChoroplethMapsView** is used to maintain the service.
@@ -60,8 +70,7 @@ The view file is [view_collection.py](./serverDjango/serverDjango/views_collecti
             self.dir = os.path.join(os.environ.get(
                 'SYNC', None), 'GeoData', 'json-files')
 
-        self.prefix = os.path.join(
-            'choroplethMaps')
+        self.prefix = 'choroplethMaps'
 
         self.working_dir = os.path.join(
             os.path.dirname(__file__),
@@ -103,12 +112,12 @@ It will automatically operates the .js scripts and plots the flowers.
 - The Workshop Side
 
   The [index.html](./workShop/flowersPlot/index.html) file is modified and moved to the template file of [flowersPlot.html](./serverDjango/templates/flowersPlot.html).
-  The '{{workingDir}}' placeholder is added into the .js importing commands.
+  The '{{prefix}}' placeholder is added into the .js importing commands.
 
   ```html
-  <script type="text/javascript" src="{{workingDir}}/css-colors.js"></script>
-  <script type="text/javascript" src="{{workingDir}}/flower.js"></script>
-  <script type="text/javascript" src="{{workingDir}}/draw.js"></script>
+  <script type="text/javascript" src="{{prefix}}/css-colors.js"></script>
+  <script type="text/javascript" src="{{prefix}}/flower.js"></script>
+  <script type="text/javascript" src="{{prefix}}/draw.js"></script>
   ```
 
 - The Django Side

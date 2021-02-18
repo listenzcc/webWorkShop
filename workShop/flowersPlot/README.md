@@ -14,12 +14,12 @@ It will automatically operates the .js scripts and plots the flowers.
 - The Workshop Side
 
   The [index.html](./workShop/flowersPlot/index.html) file is modified and moved to the template file of [flowersPlot.html](./serverDjango/templates/flowersPlot.html).
-  The '{{workingDir}}' placeholder is added into the .js importing commands.
+  The '{{prefix}}' placeholder is added into the .js importing commands.
 
   ```html
-  <script type="text/javascript" src="{{workingDir}}/css-colors.js"></script>
-  <script type="text/javascript" src="{{workingDir}}/flower.js"></script>
-  <script type="text/javascript" src="{{workingDir}}/draw.js"></script>
+  <script type="text/javascript" src="{{prefix}}/css-colors.js"></script>
+  <script type="text/javascript" src="{{prefix}}/flower.js"></script>
+  <script type="text/javascript" src="{{prefix}}/draw.js"></script>
   ```
 
 - The Django Side

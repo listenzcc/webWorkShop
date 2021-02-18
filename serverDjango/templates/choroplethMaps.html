@@ -1,193 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Choropleth Mapping</title>
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Slogan -->
     <div class="fullwidth-column">
-      <h1>Choropleth Mapping</h1>
+        <h1>Choropleth Mapping</h1>
     </div>
 
     <!-- Whole View -->
     <div class="fullwidth-column">
-      <h2 id="wholeViewH2">Whole View</h2>
-      <p>The whole map plotting</p>
-      <div id="Div-1"></div>
+        <h2 id="wholeViewH2">Whole View</h2>
+        <p>The whole map plotting</p>
+        <div id="Div-1"></div>
     </div>
 
     <!-- Split View -->
     <div class="fullwidth-column">
-      <h2>Split View</h2>
-      <p>The splits of the maps</p>
-      <div id="Div-2" class="flex-display"></div>
+        <h2>Split View</h2>
+        <p>The splits of the maps</p>
+        <div id="Div-2" class="flex-display"></div>
     </div>
 
     <script type="text/javascript">
-      d3.select("#wholeViewH2").on("click", function (e) {
-        drawMap(defaultUrl, mainSvg, true);
-      });
+        d3.select("#wholeViewH2").on("click", function(e) {
+            drawMap(defaultUrl, mainSvg, true);
+        });
     </script>
 
     <!-- Overall settings -->
     <script type="text/javascript">
-      // Overall settings
+        // Overall settings
 
-      // Adjust the precision to lower the computation level
-      let precision = 20;
+        // Adjust the precision to lower the computation level
+        let precision = 20;
 
-      // Size settings
-      let width = 600;
-      let height = 400;
-      let widthSmall = 100;
-      let heightSmall = 100;
+        // Size settings
+        let width = 600;
+        let height = 400;
+        let widthSmall = 100;
+        let heightSmall = 100;
 
-      // Default url of China map
-      let defaultUrl = "choroplethMaps/100000_full.json";
+        // Default url of China map
+        let defaultUrl = "choroplethMaps/100000_full.json";
 
-      // Init the China map
-      let mainSvg = d3
-        .select("#Div-1")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        // Init the China map
+        let mainSvg = d3
+            .select("#Div-1")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
     </script>
 
     <!-- Rewind function -->
-    <script type="text/javascript" src="{{workingDir}}/rewind.js"></script>
+    <script type="text/javascript" src="{{prefix}}/rewind.js"></script>
 
     <!-- Functions definition -->
     <script type="text/javascript">
-      // Functions
+        // Functions
 
-      // Generate rgb of the hsl color in random hue value
-      function randomColor() {
-        let h = parseInt(Math.random() * 360),
-          s = 0.5,
-          l = 0.5;
-        return d3.hsl(h, s, l).toString();
-      }
+        // Generate rgb of the hsl color in random hue value
+        function randomColor() {
+            let h = parseInt(Math.random() * 360),
+                s = 0.5,
+                l = 0.5;
+            return d3.hsl(h, s, l).toString();
+        }
 
-      function cycledColor(i, n) {
-        let h = parseInt((360 * i) / n),
-          s = 0.5,
-          l = 0.5;
-        return d3.hsl(h, s, l).toString();
-      }
+        function cycledColor(i, n) {
+            let h = parseInt((360 * i) / n),
+                s = 0.5,
+                l = 0.5;
+            return d3.hsl(h, s, l).toString();
+        }
 
-      // Make path function based on [geoJson] and [fitSize]
-      // -@geoJson: The geoJson object
-      // -@fitSize: The size to be fitted into
-      function mkPath(geoJson, fitSize) {
-        let features = geoJson.features;
-        let center = features[0].properties.center;
+        // Make path function based on [geoJson] and [fitSize]
+        // -@geoJson: The geoJson object
+        // -@fitSize: The size to be fitted into
+        function mkPath(geoJson, fitSize) {
+            let features = geoJson.features;
+            let center = features[0].properties.center;
 
-        let projection = d3
-          .geoAzimuthalEqualArea()
-          .rotate([-center[0], -center[1], 0])
-          .fitSize(fitSize, geoJson)
-          .precision(precision);
+            let projection = d3
+                .geoAzimuthalEqualArea()
+                .rotate([-center[0], -center[1], 0])
+                .fitSize(fitSize, geoJson)
+                .precision(precision);
 
-        return d3.geoPath(projection);
-      }
+            return d3.geoPath(projection);
+        }
 
-      function drawMap(url, svg, drawSub) {
-        // Draw choropleth mas on [svg],
-        // it actually works as a redraw method
-        // the existing paths in the [svg] will be cleared
-        // The geoJson is requested from [url]
-        // The [drawSub] option is bool var, controls if the sub provinces are drawn
-        console.log("Drawing map of", url);
+        function drawMap(url, svg, drawSub) {
+            // Draw choropleth mas on [svg],
+            // it actually works as a redraw method
+            // the existing paths in the [svg] will be cleared
+            // The geoJson is requested from [url]
+            // The [drawSub] option is bool var, controls if the sub provinces are drawn
+            console.log("Drawing map of", url);
 
-        d3.json(url).then(function (geoJson) {
-          console.log(url, geoJson);
+            d3.json(url).then(function(geoJson) {
+                console.log(url, geoJson);
 
-          // If the server can not give the geoJson
-          // Report the error message and return with error code of -1
-          if (geoJson.hasOwnProperty("errorStatus")) {
-            console.log("Received error:", geoJson);
-            return -1;
-          }
+                // If the server can not give the geoJson
+                // Report the error message and return with error code of -1
+                if (geoJson.hasOwnProperty("errorStatus")) {
+                    console.log("Received error:", geoJson);
+                    return -1;
+                }
 
-          // Clear all the sub-div in #Div-2
-          if (drawSub) {
-            d3.select("#Div-2").selectAll("div").data([]).exit().remove();
-          }
+                // Clear all the sub-div in #Div-2
+                if (drawSub) {
+                    d3.select("#Div-2").selectAll("div").data([]).exit().remove();
+                }
 
-          // Rewind the geoJson
-          geojsonRewind(geoJson, true);
+                // Rewind the geoJson
+                geojsonRewind(geoJson, true);
 
-          let path = mkPath(geoJson, [svg.attr("width"), svg.attr("height")]);
+                let path = mkPath(geoJson, [svg.attr("width"), svg.attr("height")]);
 
-          // Clear all the paths in the [svg]
-          svg.selectAll("path").data([]).exit().remove();
+                // Clear all the paths in the [svg]
+                svg.selectAll("path").data([]).exit().remove();
 
-          let n = geoJson.features.length;
-          svg
-            .selectAll("path")
-            .data(geoJson.features)
-            .enter()
-            .append("path")
-            .attr("d", path)
-            .style("fill", function (d, i) {
-              // let c = randomColor();
-              let c = cycledColor(i, n);
-              if (drawSub) {
-                let u = "choroplethMaps/" + d.properties.adcode + "_full.json";
-                let w = 100;
-                let h = 100;
-                if (d.properties.name.length > 0) {
-                  // Init div
-                  let div = d3.select("#Div-2").append("div");
-                  // Add title to the div
-                  div
-                    .append("h4")
-                    .text(d.properties.name)
-                    .style("color", c)
-                    .on("click", function (e) {
-                      console.log("You just clicked the", d.properties.name);
-                      console.log("The url is", u);
-                      drawMap(u, mainSvg, true);
-                    });
-                  // Add svg to the div
-                  let s = div.append("svg").attr("width", w).attr("height", h);
-                  // Add path to the div,
-                  // the path is the OUTLINE of the geo,
-                  // if my server has the geoJson file,
-                  // it should be REPLACED later, AUTOMATICALLY
-                  s.selectAll("path")
-                    .data([d])
+                let n = geoJson.features.length;
+                svg
+                    .selectAll("path")
+                    .data(geoJson.features)
                     .enter()
                     .append("path")
-                    .attr(
-                      "d",
-                      mkPath({ type: "FeatureCollection", features: [d] }, [
-                        w,
-                        h,
-                      ])
-                    )
-                    .style("fill", c);
+                    .attr("d", path)
+                    .style("fill", function(d, i) {
+                        // let c = randomColor();
+                        let c = cycledColor(i, n);
+                        if (drawSub) {
+                            let u = "choroplethMaps/" + d.properties.adcode + "_full.json";
+                            let w = 100;
+                            let h = 100;
+                            if (d.properties.name.length > 0) {
+                                // Init div
+                                let div = d3.select("#Div-2").append("div");
+                                // Add title to the div
+                                div
+                                    .append("h4")
+                                    .text(d.properties.name)
+                                    .style("color", c)
+                                    .on("click", function(e) {
+                                        console.log("You just clicked the", d.properties.name);
+                                        console.log("The url is", u);
+                                        drawMap(u, mainSvg, true);
+                                    });
+                                // Add svg to the div
+                                let s = div.append("svg").attr("width", w).attr("height", h);
+                                // Add path to the div,
+                                // the path is the OUTLINE of the geo,
+                                // if my server has the geoJson file,
+                                // it should be REPLACED later, AUTOMATICALLY
+                                s.selectAll("path")
+                                    .data([d])
+                                    .enter()
+                                    .append("path")
+                                    .attr(
+                                        "d",
+                                        mkPath({
+                                            type: "FeatureCollection",
+                                            features: [d]
+                                        }, [
+                                            w,
+                                            h,
+                                        ])
+                                    )
+                                    .style("fill", c);
 
-                  drawMap(u, s, false);
-                }
-              }
-              return c;
-            })
-            .style("stroke", "gray")
-            .attr("class", "Province")
-            .attr("id", (d) => d.properties.adcode);
+                                drawMap(u, s, false);
+                            }
+                        }
+                        return c;
+                    })
+                    .style("stroke", "gray")
+                    .attr("class", "Province")
+                    .attr("id", (d) => d.properties.adcode);
 
-          // console.log(document.getElementsByClassName("Province"));
-        });
-      }
+                // console.log(document.getElementsByClassName("Province"));
+            });
+        }
     </script>
 
     <script type="text/javascript">
-      drawMap(defaultUrl, mainSvg, true);
+        drawMap(defaultUrl, mainSvg, true);
     </script>
-  </body>
+</body>
+
 </html>
