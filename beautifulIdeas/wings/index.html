@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wings</title>
+    <style type="text/css">
+      #mainSvg {
+        background-color: bisque;
+        width: 10in;
+        height: 5in;
+      }
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="text/javascript" src="./triangleTools.js"></script>
+  </head>
+
+  <body>
+    <h1>Wings</h1>
+    <div>
+      <svg id="mainSvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/">
+        <g id="centerBox" transform="translate(50, 50)"></g>
+      </svg>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    console.log("I believe I can fly.");
+  </script>
+
+  <script type="text/javascript">
+    class UpperWing {
+      // constructor
+      constructor(length, angle, x, y) {
+        this.length = length;
+        this.angle = angle;
+        this.x1 = x;
+        this.y1 = y;
+      }
+
+      draw() {
+        let x2y2 = this.stopPoint;
+        let x2 = x2y2[0];
+        let y2 = x2y2[1];
+
+        this.rod = d3
+          .select("#centerBox")
+          .append("line")
+          .attr("x1", this.x1)
+          .attr("y1", this.y1)
+          .attr("x2", x2)
+          .attr("y2", y2)
+          .style("stroke", "blue")
+          .style("stroke-width", 2);
+      }
+
+      get startPoint() {
+        return [this.x1, this.y1];
+      }
+
+      get stopPoint() {
+        return this.calcStopPoint();
+      }
+
+      calcStopPoint() {
+        let x2 = this.x1 + this.length * cos(this.angle);
+        let y2 = this.y1 + this.length * sin(this.angle);
+        return [x2, y2];
+      }
+
+      wave(dangle) {
+        this.angle += dangle;
+        let x2y2 = this.stopPoint;
+        let x2 = x2y2[0];
+        let y2 = x2y2[1];
+        this.rod.attr("x2", x2).attr("y2", y2);
+      }
+    }
+
+    let ruw = new UpperWing(30, 0, 0, 0);
+    ruw.draw();
+  </script>
+
+  <script type="text/javascript">
+    setInterval("ruw.wave(1)", 1000 / 50);
+  </script>
+</html>
