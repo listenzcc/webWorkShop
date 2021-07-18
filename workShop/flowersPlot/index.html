@@ -5,29 +5,33 @@
 <head>
     <title>Demo of Flowers</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <style type="text/css">
+        div#canvas {
+            background-color: cadetblue;
+            width: 26in;
+            height: 10in;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+
+        svg#mainSvg {
+            width: 25in;
+            height: 25in;
+            margin: 1%;
+            background-color: gray;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Demo of Flowers</h1>
     <div id="canvas">
+        <svg id="mainSvg"></svg>
     </div>
     <script type="text/javascript" src="./css-colors.js"></script>
     <script type="text/javascript" src="./flower.js"></script>
     <script type="text/javascript" src="./draw.js"></script>
-    <style type="text/css">
-        div#canvas {
-            background-color: cadetblue;
-            width: 800px;
-            height: 800px;
-        }
-
-        svg {
-            width: 98%;
-            height: 98%;
-            margin: 1%;
-            background-color: gray;
-        }
-    </style>
 </body>
 
 </html>
